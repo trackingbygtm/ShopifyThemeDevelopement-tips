@@ -1,0 +1,94 @@
+{% assign min = 169896 %}
+{% assign max = 766676 %}
+{% assign diff = max | minus: min %}
+{% assign randomNumber = "now" | date: "%N" | modulo: diff | plus: min %}
+
+<script>
+    jQuery(document).ready(function($) {
+        $(".hero-slider-{{randomNumber}}").slick({
+            arrows: {{section.settings.arrows}},
+            dots: {{section.settings.dots}},
+            autoplay: {{section.settings.autoplay}},
+            prevArrow: '<i class="fa fa-angle-left"></i>',
+            nextArrow: '<i class="fa fa-angle-right"></i>'
+        });
+    });
+</script>
+<div class="hero-slider hero-slider-{{randomNumber}}">
+    {%- for block in section.blocks -%}
+
+
+    <div class="single-slide-item" style="background-image:url({{ block.settings.image | img_url: '1170x700' }})">
+        <div class="row">
+            <div class="col my-auto">
+                <h2>{{block.settings.title}}</h2>
+            </div>
+        </div>
+        <div class="slide-bottom-text">
+            {{block.settings.content}}
+        </div>
+    </div>
+
+    
+    {% endfor %}
+</div>
+
+
+{% schema%}
+{
+    "name": "Slider",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "arrows",
+            "label": "Show arrows",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "dots",
+            "label": "Show Dots",
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "autoplay",
+            "label": "Autoplay",
+            "default": true
+        }
+    ],
+    "blocks": [
+        {
+            "type": "slide",
+            "name": "Slides",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "New This Week"
+                },
+                {
+                    "type": "richtext",
+                    "id": "content",
+                    "label": "Content",
+                    "default": "<p><b>Spring girls</b></p><p>LookBook 2015</p>"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Background"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Slider", 
+            "category": {
+                "en": "Home"
+            }
+        }
+    ]
+}
+{% endschema%}

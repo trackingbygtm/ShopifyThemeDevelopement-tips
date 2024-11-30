@@ -1,0 +1,80 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+
+<script>
+  jQuery(document).ready(function($) {
+    $(".top-product-images").slick({
+      arrows: false,
+      dots: false,
+      asNavFor: '.bottom-product-thumbnails',
+      adaptiveHeight: true
+    });
+    $(".bottom-product-thumbnails").slick({
+      arrows: true,
+      dots: false,
+      asNavFor: '.top-product-images',
+      slidesToShow: 3,
+      prevArrow: '<i class="fa fa-angle-left"></i>',
+      nextArrow: '<i class="fa fa-angle-right"></i>',
+      centerMode: true,
+      focusOnSelect: true
+    });
+  });
+</script>
+
+<div class="single-product-wrapper">
+  <div class="backto-homepage">
+    <a href="/"><i class="fa fa-caret-left"></i> Back</a>
+  </div>
+
+  <div class="product-info">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="top-product-images">
+          {% for image in product.images %}
+            <a href="{{ image.src | img_url: 'large' }}">
+              <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}">
+              <i class="fa fa-plus"></i>
+            </a>
+          {% endfor %}
+        </div>
+
+        <div class="bottom-product-thumbnails">
+          {% for image in product.images %}
+              <div class="slide-thumbnail" style="background-image:url({{ image.src | img_url: '150x130' }})"></div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <h2>{{ product.title }}</h2>
+        <p class="product-price">{{ current_variant.price | money }}</p>
+        <div class="product-description">{{ product.description }}</div>
+        <div class="product-purchase">
+          <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+            <input type="number" id="Quantity" name="quantity" value="1" min="1">
+            <select name="id" id="productSelect">
+              {% for variant in product.variants %}
+                {% if variant.available %}
+                  <option value="{{ variant.id }}">
+                    {{ variant.title }} - {{ variant.price | money_with_currency }}
+                  </option>
+                {% else %}
+                  <option disabled="disabled">
+                    {{ variant.title }} - sold out
+                  </option>
+                {% endif %}
+              {% endfor %}
+            </select>
+            
+            <button type="submit" name="add" id="AddToCart">Add to cart</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{%  section 'box-info' %}
+

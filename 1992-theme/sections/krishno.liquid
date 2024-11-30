@@ -1,0 +1,41 @@
+
+		<div class="text-cta-section" >
+		        <h2>{{section.settings.title}}</h2>
+		        <p>{{section.settings.content}}</p>
+		</div>
+
+
+
+ 
+
+{% schema%}
+{
+    "name": {
+        "en": "krishno section"
+    },
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "i love you"
+        },
+        {
+            "type": "textarea",
+            "id": "content",
+            "label": "Content",
+            "default": "I want to buy a macbook"
+        }
+    ],
+    "presets": [
+        {
+            "name": {
+                "en": "Text CTA"
+            }, 
+            "category": {
+                "en": "Home"
+            }
+        }
+    ]
+}
+{% endschema%}

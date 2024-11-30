@@ -1,0 +1,80 @@
+<div class="row">
+	<div class="col">
+		<div class="text-cta-section" style="margin-top:{{section.settings.top_margin}}px;margin-bottom:{{section.settings.bottom_margin}}px">
+		    <div style="background-image:url({{ section.settings.image | img_url: 'master' }})" class="text-cta-content-bg"></div>
+		    <div class="text-cta-content-text">
+		        <h2>{{section.settings.title}}</h2>
+		        <div class="text-cta-content-innter">{{section.settings.content}}</div>
+		        {% if section.settings.link != blank %}
+		        <a href="{{section.settings.link}}"><i class="fa fa-angle-double-right"></i></a>
+		        {% endif %}
+		    </div>
+		</div>
+	</div>
+</div>
+
+
+ 
+
+{% schema%}
+{
+    "name": {
+        "en": "Text CTA"
+    },
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Sale End Season"
+        },
+        {
+            "type": "textarea",
+            "id": "content",
+            "label": "Content",
+            "default": "Girl Lookbook 2015"
+        },
+        {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "range",
+            "id": "top_margin",
+            "label": "Top Margin",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "default": 50
+        },
+        {
+            "type": "range",
+            "id": "bottom_margin",
+            "label": "Bottom Margin",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "default": 50
+        }
+    ],
+    "presets": [
+        {
+            "name": {
+                "en": "Text CTA"
+            }, 
+            "category": {
+                "en": "Home"
+            },
+            "settings": {
+                "title": "Sale End Season"
+            }
+        }
+    ]
+}
+{% endschema%}

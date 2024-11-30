@@ -1,0 +1,157 @@
+<footer class="site-footer">
+    <div class="row">
+        {%- for block in section.blocks -%}
+            <div class="col">
+                
+
+                {%- case block.type -%}
+                    {%- when 'newsletter' -%}
+                    <div class="newsletter-block">
+                        <h2>{{block.settings.title}}</h2>
+                        <div class="newsletter-form">
+                            <form action="">
+                                <input type="email" placeholder="Enter email address">
+                                <input type="submit" value="Subscribe">
+                            </form>
+                        </div>
+
+                        <div class="info-text">
+                            {{block.settings.content}}
+                        </div>
+                    </div>
+                    {%- when 'link_list' -%}
+                        <h2>{{block.settings.title}}</h2>
+                        {%- assign footer_linklist = block.settings.menu -%}
+
+                        <ul class="footer-top-menu">
+                            {%- for link in linklists[footer_linklist].links -%}
+                            <li>
+                                <a href="{{ link.url }}"
+                                {% if link.current %} aria-current="page"{% endif %}
+                                >
+                                {{ link.title | escape }}
+                                </a>
+                            </li>
+                            {%- endfor -%}
+                        </ul>
+                    {%- when 'text' -%}
+                    <h2>{{block.settings.title}}</h2>
+                    {{block.settings.content}}
+                {%- endcase -%}
+            </div>
+        {%- endfor -%}
+    </div>
+
+    <div class="row footer-bottom">
+        <div class="col my-auto">
+            <a href="/" class="footer-logo">{{ shop.name}}</a>
+
+            {%- assign left_menu = section.settings.left_menu -%}
+
+            <ul>
+                {%- for link in linklists[left_menu].links -%}
+                <li>
+                    <a href="{{ link.url }}"
+                    {% if link.current %} aria-current="page"{% endif %}
+                    >
+                    {{ link.title | escape }}
+                    </a>
+                </li>
+                {%- endfor -%}
+            </ul>
+        </div>
+        <div class="col-lg-1 text-center">
+            <span class="scroll-to-up"><i class="fa fa-arrow-up"></i></span>
+        </div>
+        <div class="col text-right my-auto">
+            {%- assign right_menu = section.settings.right_menu -%}
+
+            <ul>
+                {%- for link in linklists[right_menu].links -%}
+                <li>
+                    <a href="{{ link.url }}"
+                    {% if link.current %} aria-current="page"{% endif %}
+                    >
+                    {{ link.title | escape }}
+                    </a>
+                </li>
+                {%- endfor -%}
+            </ul>
+        </div>
+    </div>
+</footer>
+
+
+
+{% schema%}
+{
+    "name": "Footer",
+    "settings": [
+        {
+            "type": "link_list",
+            "id": "left_menu",
+            "label": "Left Menu",
+            "default": "main-menu"
+        },
+        {
+            "type": "link_list",
+            "id": "right_menu",
+            "label": "Right Menu",
+            "default": "main-menu"
+        }
+    ],
+    "max_blocks": 4,
+    "blocks": [
+        {
+            "type": "link_list",
+            "name": "Menu block",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title"
+                },
+                {
+                    "type": "link_list",
+                    "id": "menu",
+                    "label": "Select Menu"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "name": "Text block",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "content",
+                    "label": "Text"
+                }
+            ]
+        },
+        {
+            "type": "newsletter",
+            "name": "Newsletter",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Newsletter"
+                },
+                {
+                    "type": "richtext",
+                    "id": "content",
+                    "label": "Info text",
+                    "default": "<p>Sign up to receive the lastest fashion, trend and culture via email and get exclusive offers from 1992’s Shop.</p>"
+                }
+            ]
+        }
+    ]
+}
+{% endschema%}

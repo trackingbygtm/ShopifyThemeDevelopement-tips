@@ -1,0 +1,25 @@
+<div class="collection-wrapepr">
+  {% paginate collection.products by 8 %}
+    <div class="archive-title"><h1 class="text-center">{{ collection.title }}</h1></div>
+    <div class="row">
+
+      {% for product in collection.products %}
+        
+
+{% include 'product-card' %}
+
+   
+            {% else %}
+              <div class="col">
+                <div class="alert alert-info"><p>no matches</p></div>
+              </div>
+            {% endfor %}
+
+      {% if paginate.pages > 1 %}
+        {{ paginate | default_pagination }}
+      {% endif %}
+
+
+    </div>
+  {% endpaginate %}
+</div>

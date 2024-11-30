@@ -1,0 +1,32 @@
+
+
+{% assign column_markup = 'col-lg-3' %}
+{% case columns %}
+    {% when '2' %}
+        {% assign column_markup = 'col-lg-6' %}
+    {% when '3' %}
+        {% assign column_markup = 'col-lg-4' %}
+    {% when '4' %}
+        {% assign column_markup = 'col-lg-3' %}
+    {% when 'carousel' %}
+        {% assign column_markup = 'single-carousel-item' %}
+{% endcase %}
+
+ <div class="{{column_markup}}">
+          <div class="single-product-item">
+            <!-- product image -->
+            <a href="{{ product.url | within: collection }}" class="product-bg d-block" style="background-image: url('{{ product.featured_image.src | img_url: 'large' }}');"></a>
+<!-- product title -->
+            <h3><a href="{{ product.url | within: collection }}">{{ product.title }}</a></h3>
+<!-- Product Price -->
+            <div class="prodict-price">
+              {{ product.price | money }}
+{% unless product.available %}<br><strong>sold out</strong>{% endunless %}
+            </div>
+          </div>
+          </div>
+
+
+
+
+

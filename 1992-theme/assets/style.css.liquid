@@ -1,0 +1,574 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap');
+
+body{
+   font-family: 'Montserrat', sans-serif;
+}
+h1, h2, h3, h4, h5, h6{
+   font-family: 'Montserrat', sans-serif;
+    
+}
+
+img {
+    max-width: 100%;
+}
+.header-top {
+    font-size: 12px;
+    color: #2c2c2c;
+    font-weight: 200;
+    letter-spacing: 2px;
+    padding: 5px;
+    border-bottom:  1px solid #ddd;
+}
+
+.user-menu a {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #000;
+}
+.menu-area {
+    padding: 10px 0;
+}
+.mainmenu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mainmenu ul li {
+    display: inline-block;
+    font-size: 20px;
+    margin: 0 3px;
+}
+
+.mainmenu li a {
+    color: #333;
+    font-weight: 600;
+}
+a.cart-icon i {
+    color: black;
+}
+
+a.cart-icon span {
+    position: relative;
+    color: #fff;
+    left: -4px;
+    top: -6px;
+    z-index: 9;
+}
+
+a.cart-icon span:before {
+    background: red;
+    height: 100%;
+    width: 100%;
+    content: ""; 
+    position: absolute;
+    z-index: -1;
+    padding: 10px;
+    border-radius: 50%;
+    margin: 0 auto;
+    top: 0px;
+    left: 50%;
+    margin-left: -10px;
+}
+
+span.search-trigger {
+    margin-right: 10px;
+}
+
+
+
+
+
+.cta-content-bg {
+    height: 100%;
+    width: 80%;
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    opacity: 0.5;
+     margin-left: 10%;
+}
+.cta-content-text {
+    position: absolute;
+    bottom: 20%;
+    color: #333;
+   
+}
+.video-cta {
+    padding: 30px  0;
+}
+
+.cta-content-text a {
+    display: inline-block;
+    padding: 10px 30px;
+    color: #fff;
+    border-radius: 5px;
+    background: #333;
+}
+
+.cta-content-text a:hover {
+    background: #ccc;
+    color: #000;
+}
+
+/*product page*/
+a.product-bg.d-block {
+    height: 250px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: 0px 0px 7px 6px #3333330d;
+}
+
+.single-product-item {
+    text-align: center;
+    color: #333;
+    font-size: 21px;
+    margin-bottom: 25px;
+}
+
+.single-product-item h3 a {
+    color: #444;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.prodict-price {
+    font-weight: 600;
+}
+
+footer.site-footer {
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+
+/*text cta*/
+
+.text-cta-section .cta-content-bg {
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    margin-left: 0px;
+    width: 100%;
+    opacity: 1;
+    position: static;
+}
+
+
+/*text-cta*/
+
+.text-cta-content-bg {
+    height: 401px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: .7;
+}
+
+.text-cta-content-text {
+    text-align: center;
+    width: 300px;
+    margin: 0 auto;
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -150px;
+    bottom: 32px;
+}
+
+.text-cta-content-text h2 {
+    font-size: 57px;
+    font-weight: 600;
+}
+
+.text-cta-content-innter {
+    font-size: 18px;
+    font-weight: 600;
+}
+.single-boxed-info p a {
+    display: block;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-style: normal;
+    margin-top: 15px;
+}
+
+.single-boxed-info h3 {
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+}
+
+.single-boxed-info p {
+    font-style: italic;
+    font-weight: 500;
+}
+
+.single-boxed-info {
+    text-align: center;
+}
+
+
+
+/*single product page*/
+
+
+.slide-thumbnail {
+    height: 100px;
+    margin: 0 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 150px;
+}
+
+.product-info .slick-slide img {
+    width: 100%;height: 460px;
+    object-fit: cover;
+}
+
+.single-slide-item {
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 1;
+}
+
+.single-slide-item:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%; height: 100%;
+    content: "";
+    background: #000;
+    opacity: .5
+    
+}
+
+
+.slide-bottom-text {
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    width: 400px;
+    margin-left: -200px;
+    text-align: center;
+    color: #fff;
+    font-size: 26px;
+}
+
+.single-slide-item h2 {
+    position: absolute;
+    left: 50%;
+    top: 300px;
+    width: 400px;
+    margin-left: -200px;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 40px
+} 
+
+/*slider*/
+
+
+.hero-slider  i.fa.fa-angle-left.slick-arrow, .product-carousel i.fa.fa-angle-left.slick-arrow, .bottom-product-thumbnails i.fa.fa-angle-left.slick-arrow{
+    height: 50px;
+    width: 50px;
+    background: #000;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    font-size: 25px;
+    position: absolute;
+    left: -23px;
+    top: 50%;
+    z-index: 9;
+    margin-top: -25px;
+}
+.hero-slider i.fa.fa-angle-right.slick-arrow, .product-carousel i.fa.fa-angle-right.slick-arrow, .bottom-product-thumbnails i.fa.fa-angle-right.slick-arrow{
+    height: 50px;
+    width: 50px;
+    background: #000;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    font-size: 25px;
+    position: absolute;
+    right: -23px;
+    top: 50%;
+    z-index: 9;
+    margin-top: -25px;
+}
+.hero-slider ul.slick-dots, .product-carousel  ul.slick-dots, .bottom-product-thumbnails  ul.slick-dots{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+.hero-slider ul.slick-dots li, .product-carousel ul.slick-dots li, .bottom-product-thumbnails ul.slick-dots li {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.hero-slider ul.slick-dots li button, .product-carousel ul.slick-dots li button, .bottom-product-thumbnails ul.slick-dots li button{
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background: #333;
+    font-size: 0px;
+}
+
+
+
+.hero-slider ul.slick-dots li.slick-active button, .product-carousel ul.slick-dots li.slick-active button, .bottom-product-thumbnails  ul.slick-dots li.slick-active button{
+    background: #FFCC40
+}
+
+
+
+
+
+
+/*single product page*/
+
+.single-product-wrapper button#AddToCart {
+    display: block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 23px;
+    font-weight: 600;
+    background: #000;
+    color: #fff;
+}
+
+.single-product-wrapper button#AddToCart:hover {
+    background: #fff;
+    color: #000;
+    transition: .3s;
+}
+
+.single-product-wrapper form#AddToCartForm input {
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.single-product-wrapper form#AddToCartForm select {
+    padding: 15px;
+    font-weight: 600;
+}
+
+.single-product-wrapper .backto-homepage a {
+    color: #000;
+    font-weight: 700;
+    font-size: 20px;
+    margin: 23px 0;
+    display: block;
+}
+
+.single-product-wrapper p.product-price {
+    font-size: 27px;
+    font-weight: 500;
+}
+
+
+
+
+.top-product-images:hover a.slick-slide i{
+    visibility: visible;
+    opacity: 1;
+}
+
+.top-product-images a.slick-slide i {
+    position: absolute;
+    left: 28%;
+    top: 50%;
+    z-index: 9;
+    height: 50px;
+    width: 50px;
+    margin-top: -25px;
+    content: "";
+    background: #363636;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.top-product-images a.slick-slide i:hover{
+    background: ##5023aa
+}
+
+
+
+
+/*Footer*/
+
+.footer-bottom  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-bottom  ul li {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.footer-bottom  ul li a {
+    color: #333;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+a.footer-logo {
+    display: inline-block;
+    color: #333;
+    font-size: 25px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.footer-bottom {
+    padding: 30px 0;
+}
+
+ul.footer-top-menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul.footer-top-menu li a {
+    color: #333;
+    font-weight: 500;
+    font-size: 19px;
+}
+
+
+/*form*/
+.newsletter-form input {
+    padding: 11px;
+}
+
+.newsletter-form button, .newsletter-form input[type=submit] {
+    background: #000;
+    color: #fff;
+}
+
+.newsletter-form button:hover, .newsletter-form input[type=submit]:hover {
+    background: #fff;
+    color: #333
+}
+.newsletter-form {
+    margin-bottom: 20px
+}
+
+.newsletter-form input {
+    padding: 11px;
+}
+
+.newsletter-form button, .newsletter-form input[type=submit] {
+    background: #000;
+    color: #fff;
+}
+
+.newsletter-form button:hover, .newsletter-form input[type=submit]:hover {
+    background: #fff;
+    color: #333
+}
+.newsletter-form {
+    margin-bottom: 20px
+}
+
+.site-footer h2 {
+    font-size: 24px;
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 17px;
+}
+
+
+/*cart*/
+
+
+.cart-form th, .cart-form td {
+    border: 1px solid #333;
+    padding: 7px;
+}
+
+.cart-form img {
+    width: 60px;
+}
+
+.cart-form table {
+    width: 100%;
+}
+
+.cart-form button {
+    padding: 10px 20px;
+    margin-right: 20px;
+    font-weight: 700;
+}
+
+.cart-form button:hover {
+    background: #000;
+    color: #fff;
+}
+
+
+
+/*test*/
+
+div#shopify-section-header + h1, .archive-title h1 {
+    font-weight: 600;
+    text-align: center;
+    padding: 81px;
+    text-transform: capitalize;
+    letter-spacing: 3px;
+}
+form#AddToCartForm #Quantity {
+    width: 25%;
+    margin-right: 25px;
+}
+
+form#contact_form input {
+    width: 100%;
+    padding: 10px;
+    font-weight: 700;
+}
+
+form#contact_form textarea {
+    width: 100%;
+}
+form#contact_form input[type=submit]{
+    background: #000;
+    color: #fff
+}
+form#contact_form input[type=submit]:hover{
+    background: #fff;
+    color: #000;
+    transition: .3s
+}
+
+
+
+
+

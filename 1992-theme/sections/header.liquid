@@ -1,0 +1,77 @@
+<header id="site-header" class="site-header">
+
+    <div class="row header-top">
+        <div class="col">
+            <i class="fa fa-star">Skilled developers Demo theme  contact us</i>
+        </div>
+        <div class="col col-auto user-menu">
+            {% if shop.customer_accounts_enabled %}
+                {% if customer %}
+                    <a href="/account">account</a>
+                    {{ 'log out'  | customer_logout_link }}
+                {% else %}
+                    {{ 'log in ' | customer_login_link }}
+                    {{ 'register' | customer_register_link }}
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="row menu-area">
+        <div class="col-lg-2 my-auto">
+            <div class="logo">
+                <a href="/">
+                    {% if section.settings.logo %}
+                       <img src="{{ section.settings.logo | img_url: 'master' }}" alt="">
+                    {% else %}
+                    <h2>{{ shop.name}}</h2>
+                    {% endif %}
+                    
+                </a>
+            </div>
+        </div>
+        <div class="col my-auto text-center">
+            <div class="mainmenu">
+                <ul id="nav">
+                    {% for link in linklists.main-menu.links %}
+                      {% assign child_list_handle = link.title | handleize %}
+                      {% if linklists[child_list_handle].links != blank %}
+                       <li> <a href="{{ link.url }}">{{ link.title }}</a></li>
+                        [<ul>{% for childlink in linklists[child_list_handle].links %}
+                          <li><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
+                        {% endfor %}</ul>]
+                      {% else %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>                
+        </div>
+        <div class="col-lg-2 my-auto">
+           <span class="search-trigger"><i class="fa fa-search"></i></span>
+           <a href="/cart" class="cart-icon"> <i class="fa fa-shopping-cart"></i> <span class="sh-cart-count"> {{ cart.item_count }}</span></a>
+        </div>
+    </div>
+</header>
+
+
+
+
+{% schema %}
+
+{
+    "name":{
+        "en": "Header" 
+    },
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "logo",
+            "label": {
+                "en": "Upload Logo"
+            
+            }
+        }
+    ]
+}
+
+{% endschema %}

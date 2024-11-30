@@ -1,0 +1,74 @@
+
+<div class="row" style="margin-top:{{section.settings.top_margin}}px;margin-bottom:{{section.settings.bottom_margin}}px">
+    {%- for block in section.blocks -%}
+    <div class="col">
+        <div class="single-boxed-info">
+            <h3>{{block.settings.title}}</h3>
+            {{block.settings.content}}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+{% schema%}
+{
+    "name": "Boxed Info",
+    "settings": [
+        {
+            "type": "range",
+            "id": "top_margin",
+            "label": "Top Margin",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "default": 50
+        },
+        {
+            "type": "range",
+            "id": "bottom_margin",
+            "label": "Bottom Margin",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "default": 50
+        }
+    ],
+    "blocks": [
+        {
+            "type": "text",
+            "name": "Box",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Free shipping"
+                },
+                {
+                    "type": "richtext",
+                    "id": "content",
+                    "label": "Content",
+                    "default": "<p>For standard orders over 50 USD</p>"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": {
+                "en": "Boxed Info"
+            }, 
+            "category": {
+                "en": "Home"
+            },
+            "settings": {
+                "top_margin": 50,
+                "bottom_margin": 50
+            }
+        }
+    ]
+}
+{% endschema%}

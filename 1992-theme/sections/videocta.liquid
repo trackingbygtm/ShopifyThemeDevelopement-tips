@@ -1,0 +1,131 @@
+
+
+<div class="video-cta">
+	<div class="row">
+
+
+     {%  if section.settings.video_position == 'left' %} <div class="col-6">{% include 'video-embed' %}</div> {% endif %}
+
+
+		<div class="col-6">
+			<div class="cta-left-content">
+				<div  style="background-image:url({{ section.settings.image | img_url: 'master' }})"  class="cta-content-bg"></div>
+				<div class="cta-content-text">
+					<h2>{{ section.settings.title }}</h2>
+					<p>{{ section.settings.content }}</p>
+					{% if section.settings.link != blank %}
+<a href="{{ section.settings.link  }}"> <i class="fa fa-angle-double-right"></i></a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+
+		
+            {%  if section.settings.video_position == 'right' %} <div class="col-6">{% include 'video-embed' %} </div>{% endif %}		
+		
+
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% schema %}
+
+{
+    "name":{
+        "en": "Video CTA"
+    },
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": {
+                "en": "Title" 
+            },
+            "default": "spring girls"
+        },
+        {
+            "type": "textarea",
+            "id": "content",
+            "label": { 
+                "en": "content"
+            },
+            "default": "girl lookbook 2015"
+        },
+        {
+            "type": "url",
+            "id": "link",
+            "label": {
+                "en": "Link"
+            }
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": {
+                "en": "select you image here"
+            }
+        },
+        {
+            "type": "select",
+            "id": "video_position",
+            "label": "Video position",
+            "default": "right",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left side"
+                },
+                {
+                    "value": "right",
+                    "label": "Right side"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "id": "video_id",
+            "label": {
+                "en": "Type your Video ID"
+            }
+        },
+        {
+            "type": "text",
+            "id": "video_title",
+            "label": {
+                "en": "Type your Video Title"
+            },
+            "default": "video Title"
+        },
+        {
+            "type": "textarea",
+            "id": "video_content",
+            "label": {
+                "en": "Type your Video content here"
+            },
+            "default": "video content"
+        } 
+    ],
+    "presets": [
+	    {
+	      "name": "video CTA",
+	      "category": "home",
+	      "settings": {
+	      	"title": "spring girls"
+	      }
+	    }
+    ]
+}
+
+{% endschema %}

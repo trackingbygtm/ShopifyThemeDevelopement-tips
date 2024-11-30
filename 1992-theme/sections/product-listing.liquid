@@ -1,0 +1,123 @@
+{%- assign collection = collections[section.settings.collection] -%}
+
+{% if section.settings.title != blank and section.settings.desc != blank %}
+    <div class="listing-header">
+        {% if section.settings.title != blank %}<h2>{{section.settings.title}}</h2>{% endif %}
+        {% if section.settings.desc != blank %} {{section.settings.desc}} {% endif %}
+    </div>
+{% endif %}
+
+{% if section.settings.type == 'carousel' %}
+    {% assign min = 169896 %}
+    {% assign max = 766676 %}
+    {% assign diff = max | minus: min %}
+    {% assign randomNumber = "now" | date: "%N" | modulo: diff | plus: min %}
+
+    {% assign columns_text = 'carousel' %}
+    <script>
+        jQuery(document).ready(function($) {
+            $(".product-carousel-{{randomNumber}}").slick({
+                arrows: false,
+                dots: true,
+                autoplay: true,
+                slidesToShow: {{section.settings.columns}},
+                prevArrow: '<i class="fa fa-angle-left"></i>',
+                nextArrow: '<i class="fa fa-angle-right"></i>'
+            });
+        });
+    </script>
+    <div class="product-carousel product-carousel-{{randomNumber}}">
+{% else %}
+    {% assign columns_text = section.settings.columns %}
+    <div class="row">
+{% endif %}
+
+
+    {% for product in collection.products limit: section.settings.count %}
+        {% include 'product-card', columns: columns_text %}
+    {% endfor %}
+</div>
+
+
+
+
+{% schema%}
+{
+    "name": {
+        "en": "Product Listing"
+    },
+    "settings": [
+        {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+        },
+        {
+            "type": "select",
+            "id": "type",
+            "label": {
+                "en": "Display type"
+            },
+            "default": "grid",
+            "options": [
+                {
+                    "value": "grid",
+                    "label": "Grid"
+                },
+                {
+                    "value": "carousel",
+                    "label": "Carousel"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "New Items"
+        },
+        {
+            "type": "text",
+            "id": "desc",
+            "label": "Description",
+            "default": "Spring & Summer 2015 Collection"
+        },
+        {
+            "type": "text",
+            "id": "count",
+            "label": "How many items?",
+            "default": "4"
+        },
+        {
+            "type": "select",
+            "id": "columns",
+            "label": "Columns",
+            "default": "4",
+            "options": [
+                {
+                    "value": "2",
+                    "label": "Two Columns"
+                },
+                {
+                    "value": "3",
+                    "label": "Three Columns"
+                },
+                {
+                    "value": "4",
+                    "label": "Four Columns"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": {
+                "en": "Product Listing"
+            }, 
+            "category": {
+                "en": "Home"
+            }
+        }
+    ]
+}
+{% endschema%}

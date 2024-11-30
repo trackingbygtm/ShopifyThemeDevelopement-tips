@@ -1,0 +1,89 @@
+
+
+{%- for block in section.blocks -%}
+  {%- case block.type -%}
+    {%- when 'heading' -%}
+      <h2>
+        {{ block.settings.heading }}
+      </h2>
+    {%- when 'text' -%}
+      <div >
+        {{ block.settings.text }}
+      </div>
+      {%- when 'image' -%}
+      <div >
+       
+        <img src=" {{ block.settings.image | img_url: 'master' }}"alt="Chef No. 1 Knife" class="w-80  h-auto mb-4" />
+      </div>
+   
+  {%- endcase -%}
+{%- endfor -%}
+
+
+
+{% schema %}
+
+{
+    "name":{
+        "en": "Multiple text Block"
+    },
+    "blocks": [
+    {
+      "type": "heading",
+      "name": "Heding name ",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "heading default",
+          "label": "heading label"
+        },
+      ]
+    },
+      {
+      "type": "text",
+      "name": "textname",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<h2>type your contant here </h2>",
+          "label": "text label"
+        }
+      ]
+    },
+      {
+        "type": "image",
+        "name": "Choose Image",
+        "limit": 3,
+        "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Choose your Best image here "
+        }
+      ]
+        },
+    ],
+    "presets": [
+	    {
+	      "name": "Multiple text",
+	      "category": "home",
+          "blocks": [
+            {
+              "type": "heading"
+            },
+            {
+              "type": "text"
+            },
+            {
+              "type": "image"
+            }
+          ]
+	    }
+    ]
+}
+
+{% endschema %}

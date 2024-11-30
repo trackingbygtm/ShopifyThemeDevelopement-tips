@@ -1,0 +1,71 @@
+    
+
+<div class="flex flex-col md:flex-row justify-around items-center p-4 bg-background">
+
+
+{%- for block in section.blocks -%}
+  {%- case block.type -%}
+    {%- when 'service' -%}
+
+  <div class="flex flex-col items-center text-center">
+    <img class="w-80" aria-hidden="true" alt="Zero Risk" src=" {{ block.settings.serviceimage | img_url: 'master' }}" />
+    <h3 class="mt-2 text-lg font-semibold text-primary"> {{ block.settings.serviceheading }}</h3>
+  </div>
+    
+  {%- endcase -%}
+{%- endfor -%}
+ 
+  
+</div>
+
+
+
+
+
+
+
+
+
+{% schema %}
+
+{
+    "name":{
+        "en": "Multiple service Block"
+    },
+    "blocks": [
+     {
+      "type": "service",
+      "name": "service name ",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "serviceheading",
+          "default": "heading default",
+          "label": "heading label"
+        },
+        {
+          "type": "image_picker",
+          "id": "serviceimage",
+          "label": "Choose your Best image here "
+        }
+        
+      ]
+    }
+    ],
+    "presets": [
+	    {
+	      "name": "Multiple Services",
+	      "category": "home",
+          "blocks": [
+            {
+              "type": "service"
+            }
+          ]
+	    }
+    ]
+}
+
+{% endschema %}
+
+

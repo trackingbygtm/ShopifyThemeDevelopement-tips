@@ -1,0 +1,81 @@
+
+
+<div class="video-cta">
+	<div class="row">
+
+
+
+
+		<div class="col-6">
+			<div class="cta-left-content">
+				<div class="cta-content-text">
+
+                  <img src="{{ section.settings.image | img_url: 'master' }}"  />
+                  
+					<h4>{{ section.settings.subtitle }}</h4>
+					<h2>{{ section.settings.title }}</h2>
+					<p>{{ section.settings.content }}</p>
+				
+				</div>
+			</div>
+		</div>
+
+			
+		
+
+	</div>
+</div>
+
+
+{% schema %}
+
+{
+    "name":{
+        "en": "Custom section "
+    },
+    "settings": [
+      
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": {
+                "en": "select you image here"
+            }
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": {
+                "en": "Title" 
+            },
+            "default": "default title"
+        },
+        {
+            "type": "text",
+            "id": "subtitle",
+            "label": {
+                "en": "sub Title" 
+            },
+            "default": "spring girls"
+        },
+        {
+            "type": "textarea",
+            "id": "content",
+            "label": { 
+                "en": "content"
+            },
+            "default": "girl lookbook 2015"
+        } 
+    ],
+    "presets": [
+	    {
+	      "name": "Custom section",
+	      "category": "home",
+	      "settings": {
+	      	"title": "default title"
+	      }
+	    }
+    ]
+}
+
+{% endschema %}

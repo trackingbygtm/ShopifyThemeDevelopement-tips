@@ -1,0 +1,8 @@
+mkdir [foldername]      
+
+shopify theme pull --store scliarifk.myshopify.com
+
+shopify theme dev
+
+shopify theme push --store scliarifk.myshopify.com
+

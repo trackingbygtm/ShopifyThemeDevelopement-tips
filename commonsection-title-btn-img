@@ -3,7 +3,7 @@
     <!-- Dynamic Content Blocks -->
     <div class="">
       {% for block in section.blocks %}
-        <div class="block mb-6" style="padding-top: {{ block.settings.padding_top }}; padding-bottom: {{ block.settings.padding_bottom }};">
+        <div class="block mb-6 text-{{ block.settings.text_alignment }}" style="padding-top: {{ block.settings.padding_top }}; padding-bottom: {{ block.settings.padding_bottom }};">
           {% if block.type == 'title' %}
             <h3 class="font-bold" style="font-size: {{ block.settings.font_size }}; color: {{ block.settings.text_color }};">
               {{ block.settings.title }}
@@ -17,19 +17,23 @@
               {{ block.settings.richtext }}
             </div>
           {% elsif block.type == 'button' %}
-            <a
-              href="{{ block.settings.button_url }}"
-              class="inline-block rounded-lg"
-              style="background-color: {{ block.settings.button_bg_color }}; color: {{ block.settings.button_text_color }}; font-size: {{ block.settings.font_size }}; 
-                      padding: {{ block.settings.button_padding_top }} {{ block.settings.button_padding_right }} {{ block.settings.button_padding_bottom }} {{ block.settings.button_padding_left }};">
-              {{ block.settings.button_text }}
-            </a>
+            <div class="text-{{ block.settings.text_alignment }}">
+              <a
+                href="{{ block.settings.button_url }}"
+                class="inline-block rounded-lg"
+                style="background-color: {{ block.settings.button_bg_color }}; color: {{ block.settings.button_text_color }}; font-size: {{ block.settings.font_size }}; 
+                        padding: {{ block.settings.button_padding_top }} {{ block.settings.button_padding_right }} {{ block.settings.button_padding_bottom }} {{ block.settings.button_padding_left }};">
+                {{ block.settings.button_text }}
+              </a>
+            </div>
           {% elsif block.type == 'image' %}
-            <img
-              src="{{ block.settings.image | img_url: 'medium' }}"
-              alt="Image"
-              class="rounded-lg mx-auto"
-              style="width: {{ block.settings.image_width }};">
+            <div style="text-align: {{ block.settings.text_alignment }};">
+              <img
+                src="{{ block.settings.image | img_url: 'medium' }}"
+                alt="Image"
+                class="rounded-lg"
+                style="width: {{ block.settings.image_width }};">
+            </div>
           {% endif %}
         </div>
       {% endfor %}
@@ -40,7 +44,7 @@
 <!-- Schema -->
 {% schema %}
   {
-    "name": "Enhanced Section",
+    "name": "Enhance-Item",
     "settings": [
       {
         "type": "color",
@@ -83,6 +87,23 @@
             "default": "#000000"
           },
           {
+            "type": "select",
+            "id": "text_alignment",
+            "label": "Text Alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              }, {
+                "value": "center",
+                "label": "Center"
+              }, {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "left"
+          }, {
             "type": "text",
             "id": "padding_top",
             "label": "Padding Top (e.g., 10px)",
@@ -117,6 +138,23 @@
             "default": "#000000"
           },
           {
+            "type": "select",
+            "id": "text_alignment",
+            "label": "Text Alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              }, {
+                "value": "center",
+                "label": "Center"
+              }, {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "left"
+          }, {
             "type": "text",
             "id": "padding_top",
             "label": "Padding Top (e.g., 10px)",
@@ -142,70 +180,29 @@
             "label": "Image Width (e.g., 100%)",
             "default": "100%"
           }, {
-            "type": "text",
-            "id": "padding_top",
-            "label": "Padding Top (e.g., 10px)",
-            "default": "10px"
-          }, {
-            "type": "text",
-            "id": "padding_bottom",
-            "label": "Padding Bottom (e.g., 10px)",
-            "default": "10px"
-          }
-        ]
-      }, {
-        "type": "button",
-        "name": "Button",
-        "settings": [
-          {
-            "type": "text",
-            "id": "button_text",
-            "label": "Button Text",
-            "default": "Click Here"
-          },
-          {
-            "type": "url",
-            "id": "button_url",
-            "label": "Button URL"
-          },
-          {
-            "type": "color",
-            "id": "button_bg_color",
-            "label": "Button Background Color",
-            "default": "#000000"
-          },
-          {
-            "type": "color",
-            "id": "button_text_color",
-            "label": "Button Text Color",
-            "default": "#ffffff"
-          }, {
-            "type": "text",
-            "id": "button_padding_top",
-            "label": "Button Padding Top (e.g., 10px)",
-            "default": "10px"
-          }, {
-            "type": "text",
-            "id": "button_padding_right",
-            "label": "Button Padding Right (e.g., 10px)",
-            "default": "10px"
-          }, {
-            "type": "text",
-            "id": "button_padding_bottom",
-            "label": "Button Padding Bottom (e.g., 10px)",
-            "default": "10px"
-          }, {
-            "type": "text",
-            "id": "button_padding_left",
-            "label": "Button Padding Left (e.g., 10px)",
-            "default": "10px"
+            "type": "select",
+            "id": "text_alignment",
+            "label": "Image Alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              }, {
+                "value": "center",
+                "label": "Center"
+              }, {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "center"
           }
         ]
       }
     ],
     "presets": [
       {
-        "name": "Enhanced Section",
+        "name": "Enhance Item",
         "category": "Custom"
       }
     ]

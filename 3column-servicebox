@@ -1,0 +1,105 @@
+{% schema %}
+  {
+    "name": "Three Columns",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image1",
+        "label": "Image for Column 1"
+      },
+      {
+        "type": "text",
+        "id": "title1",
+        "label": "Title for Column 1",
+        "default": "Vacuum Hardening"
+      },
+      {
+        "type": "textarea",
+        "id": "content1",
+        "label": "Content for Column 1",
+        "default": "We use one of the most advanced hardening technologies in the world."
+      },
+      {
+        "type": "image_picker",
+        "id": "image2",
+        "label": "Image for Column 2"
+      }, {
+        "type": "text",
+        "id": "title2",
+        "label": "Title for Column 2",
+        "default": "Made in Germany"
+      }, {
+        "type": "textarea",
+        "id": "content2",
+        "label": "Content for Column 2",
+        "default": "We are producing knives since 1776 in Germany."
+      }, {
+        "type": "image_picker",
+        "id": "image3",
+        "label": "Image for Column 3"
+      }, {
+        "type": "text",
+        "id": "title3",
+        "label": "Title for Column 3",
+        "default": "Finest Material"
+      }, {
+        "type": "textarea",
+        "id": "content3",
+        "label": "Content for Column 3",
+        "default": "Our knives are made from high-alloyed stainless steel."
+      }
+    ],
+    "presets": [
+      {
+        "name": "3 Item",
+        "category": "Custom"
+      }
+    ]
+  }
+{% endschema %}
+
+<section class="bg-gray-100 py-8">
+  <div class="container mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
+    <!-- Column 1 -->
+    <div class="flex items-center bg-white shadow-md rounded-lg p-6">
+      <div class="w-1/3 flex justify-center">
+        <img
+          src="{{ section.settings.image1 | img_url: 'medium'  }}"
+          alt="{{ section.settings.title1 }}"
+          class="w-16 h-16">
+      </div>
+      <div class="w-2/3 pl-4">
+        <h3 class="text-lg font-bold">{{ section.settings.title1 }}</h3>
+        <p class="text-gray-600">{{ section.settings.content1 }}</p>
+      </div>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="flex items-center bg-white shadow-md rounded-lg p-6">
+      <div class="w-1/3 flex justify-center">
+        <img
+          src="{{ section.settings.image2 | img_url: 'medium'  }}"
+          alt="{{ section.settings.title2 }}"
+          class="w-16 h-16">
+      </div>
+      <div class="w-2/3 pl-4">
+        <h3 class="text-lg font-bold">{{ section.settings.title2 }}</h3>
+        <p class="text-gray-600">{{ section.settings.content2 }}</p>
+      </div>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="flex items-center bg-white shadow-md rounded-lg p-6">
+      <div class="w-1/3 flex justify-center">
+        <img
+          src="{{ section.settings.image3 | img_url: 'medium'  }}"
+          alt="{{ section.settings.title3 }}"
+          class="w-16 h-16">
+      </div>
+      <div class="w-2/3 pl-4">
+        <h3 class="text-lg font-bold">{{ section.settings.title3 }}</h3>
+        <p class="text-gray-600">{{ section.settings.content3 }}</p>
+      </div>
+    </div>
+  </div>
+</section>

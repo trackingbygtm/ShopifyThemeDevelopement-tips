@@ -1,0 +1,129 @@
+<section class="shopify-section section" style="background-color: {{ section.settings.section_background }}; padding-top: {{ section.settings.section_padding_top }}; padding-bottom: {{ section.settings.section_padding_bottom }};">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-10 p-4 page-width">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'service' -%}
+          <div class="flex flex-col items-center space-y-4 p-5 border" style="background-color: {{ block.settings.item_background_color }};
+                      border-color: {{ block.settings.item_border_color }};
+                      border-width: 1px;">
+            <div class="flex justify-center">
+              <img
+                src="{{ block.settings.serviceimage | img_url: 'master' }}"
+                alt="Image"
+                class="rounded-md"
+                style="width: {{ block.settings.image_size }}px; height: {{ block.settings.image_size }}px; object-fit: cover;">
+            </div>
+            <div class="text-center">
+              <h3 class="font-semibold mb-2" style="font-size: {{ block.settings.title_font_size }};
+                         color: {{ block.settings.title_color }};">
+                {{ block.settings.serviceheading }}
+              </h3>
+              <p style="font-size: {{ block.settings.description_font_size }};
+                        color: {{ block.settings.description_color }};">
+                {{ block.settings.description }}
+              </p>
+            </div>
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Multiple Service Block",
+    "settings": [
+      {
+        "type": "color",
+        "id": "section_background",
+        "label": "Section Background Color",
+        "default": "#ffffff"
+      }, {
+        "type": "text",
+        "id": "section_padding_top",
+        "label": "Section Padding Top",
+        "default": "20px"
+      }, {
+        "type": "text",
+        "id": "section_padding_bottom",
+        "label": "Section Padding Bottom",
+        "default": "20px"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "service",
+        "name": "Service Block",
+        "settings": [
+          {
+            "type": "inline_richtext",
+            "id": "serviceheading",
+            "default": "Service Heading",
+            "label": "Service Heading"
+          },
+          {
+            "type": "image_picker",
+            "id": "serviceimage",
+            "label": "Service Image"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "default": "This is a short description of the service.",
+            "label": "Description"
+          },
+          {
+            "type": "color",
+            "id": "item_background_color",
+            "label": "Item Background Color",
+            "default": "#f9f9f9"
+          }, {
+            "type": "color",
+            "id": "item_border_color",
+            "label": "Item Border Color",
+            "default": "#ddd"
+          }, {
+            "type": "text",
+            "id": "title_font_size",
+            "label": "Title Font Size",
+            "default": "18px"
+          }, {
+            "type": "color",
+            "id": "title_color",
+            "label": "Title Color",
+            "default": "#000000"
+          }, {
+            "type": "text",
+            "id": "description_font_size",
+            "label": "Description Font Size",
+            "default": "14px"
+          }, {
+            "type": "color",
+            "id": "description_color",
+            "label": "Description Color",
+            "default": "#333333"
+          }, {
+            "type": "range",
+            "id": "image_size",
+            "label": "Image Size (px)",
+            "default": 150,
+            "min": 100,
+            "max": 200,
+            "step": 1
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image Box",
+        "category": "Home",
+        "blocks": [
+          {
+            "type": "service"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

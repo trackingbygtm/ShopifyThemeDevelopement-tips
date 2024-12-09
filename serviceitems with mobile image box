@@ -1,5 +1,5 @@
-<section class="shopify-section section" style="background-color: {{ section.settings.section_background }}; padding-top: {{ section.settings.section_padding_top }}; padding-bottom: {{ section.settings.section_padding_bottom }};">
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-10 p-4 page-width">
+<section class="shopify-section section page-width" style="background-color: {{ section.settings.section_background }}; padding-top: {{ section.settings.section_padding_top }}; padding-bottom: {{ section.settings.section_padding_bottom }};">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-10 p-4 ">
     {%- for block in section.blocks -%}
       {%- case block.type -%}
         {%- when 'service' -%}

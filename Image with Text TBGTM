@@ -1,0 +1,246 @@
+<section class="shopify-section section page-width">
+  <div class="container mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Image Column -->
+      <div class="flex {% if section.settings.image_alignment == 'center' %}justify-center{% elsif section.settings.image_alignment == 'right' %}justify-end{% else %}justify-start{% endif %}">
+        <img
+          src="{{ section.settings.image | img_url: 'medium' }}"
+          alt="{{ section.settings.title }}"
+          class="rounded-lg shadow-lg">
+      </div>
+
+      <!-- Content Column -->
+      <div class="text-{{ section.settings.content_alignment }} p-4" style="padding-left: {{ section.settings.content_padding_left }};
+                  padding-right: {{ section.settings.content_padding_right }};">
+        <h2 class="font-semibold" style="margin-top: {{ section.settings.title_margin_top }};
+                   margin-bottom: {{ section.settings.title_margin_bottom }};
+                   color: {{ section.settings.title_color }};
+                   font-size: {{ section.settings.title_font_size }};
+                   font-weight: {{ section.settings.title_font_weight }};">
+          {{ section.settings.title }}
+        </h2>
+        <p class="font-semibold" style="margin-top: {{ section.settings.subtitle_margin_top }};
+                  margin-bottom: {{ section.settings.subtitle_margin_bottom }};
+                  color: {{ section.settings.subtitle_color }};
+                  font-size: {{ section.settings.subtitle_font_size }};
+                  font-weight: {{ section.settings.subtitle_font_weight }};">
+          {{ section.settings.subtitle }}
+        </p>
+        <p style="margin-top: {{ section.settings.description_margin_top }};
+                 margin-bottom: {{ section.settings.description_margin_bottom }};
+                 color: {{ section.settings.description_color }};
+                 font-size: {{ section.settings.description_font_size }};
+                 font-weight: {{ section.settings.description_font_weight }};">
+          {{ section.settings.description }}
+        </p>
+        <a
+          href="{{ section.settings.shop_button_url }}"
+          class="inline-block rounded-lg transition"
+          style="margin-top: {{ section.settings.button_margin_top }};
+                  margin-bottom: {{ section.settings.button_margin_bottom }};
+                  padding: {{ section.settings.button_padding }};
+                  background-color: {{ section.settings.button_background }};
+                  color: {{ section.settings.button_color }};
+                  font-size: {{ section.settings.button_font_size }};
+                  font-weight: {{ section.settings.button_font_weight }};">
+          Shop Now
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Image with Text",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "select",
+        "id": "image_alignment",
+        "label": "Image Alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "content_alignment",
+        "label": "Content Alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Product Title"
+      }, {
+        "type": "text",
+        "id": "title_margin_top",
+        "label": "Title Margin Top",
+        "default": "20px"
+      }, {
+        "type": "text",
+        "id": "title_margin_bottom",
+        "label": "Title Margin Bottom",
+        "default": "10px"
+      }, {
+        "type": "color",
+        "id": "title_color",
+        "label": "Title Color",
+        "default": "#000000"
+      }, {
+        "type": "text",
+        "id": "title_font_size",
+        "label": "Title Font Size",
+        "default": "36px"
+      }, {
+        "type": "text",
+        "id": "title_font_weight",
+        "label": "Title Font Weight",
+        "default": "bold"
+      }, {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subtitle",
+        "default": "Product Subtitle"
+      }, {
+        "type": "text",
+        "id": "subtitle_margin_top",
+        "label": "Subtitle Margin Top",
+        "default": "10px"
+      }, {
+        "type": "text",
+        "id": "subtitle_margin_bottom",
+        "label": "Subtitle Margin Bottom",
+        "default": "10px"
+      }, {
+        "type": "color",
+        "id": "subtitle_color",
+        "label": "Subtitle Color",
+        "default": "#000000"
+      }, {
+        "type": "text",
+        "id": "subtitle_font_size",
+        "label": "Subtitle Font Size",
+        "default": "24px"
+      }, {
+        "type": "text",
+        "id": "subtitle_font_weight",
+        "label": "Subtitle Font Weight",
+        "default": "normal"
+      }, {
+        "type": "textarea",
+        "id": "description",
+        "label": "Description",
+        "default": "This is a short description of the product."
+      }, {
+        "type": "text",
+        "id": "description_margin_top",
+        "label": "Description Margin Top",
+        "default": "10px"
+      }, {
+        "type": "text",
+        "id": "description_margin_bottom",
+        "label": "Description Margin Bottom",
+        "default": "10px"
+      }, {
+        "type": "color",
+        "id": "description_color",
+        "label": "Description Color",
+        "default": "#555555"
+      }, {
+        "type": "text",
+        "id": "description_font_size",
+        "label": "Description Font Size",
+        "default": "16px"
+      }, {
+        "type": "text",
+        "id": "description_font_weight",
+        "label": "Description Font Weight",
+        "default": "normal"
+      }, {
+        "type": "url",
+        "id": "shop_button_url",
+        "label": "Shop Button URL"
+      }, {
+        "type": "text",
+        "id": "button_margin_top",
+        "label": "Button Margin Top",
+        "default": "20px"
+      }, {
+        "type": "text",
+        "id": "button_margin_bottom",
+        "label": "Button Margin Bottom",
+        "default": "20px"
+      }, {
+        "type": "color",
+        "id": "button_background",
+        "label": "Button Background Color",
+        "default": "#000000"
+      }, {
+        "type": "color",
+        "id": "button_color",
+        "label": "Button Text Color",
+        "default": "#FFFFFF"
+      }, {
+        "type": "text",
+        "id": "button_font_size",
+        "label": "Button Font Size",
+        "default": "18px"
+      }, {
+        "type": "text",
+        "id": "button_font_weight",
+        "label": "Button Font Weight",
+        "default": "bold"
+      }, {
+        "type": "text",
+        "id": "button_padding",
+        "label": "Button Padding",
+        "default": "10px 20px"
+      }, {
+        "type": "text",
+        "id": "content_padding_left",
+        "label": "Content Padding Left",
+        "default": "20px"
+      }, {
+        "type": "text",
+        "id": "content_padding_right",
+        "label": "Content Padding Right",
+        "default": "20px"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image with Text TBGTM",
+        "category": "Custom section TBGTM"
+      }
+    ]
+  }
+{% endschema %}

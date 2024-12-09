@@ -1,60 +1,116 @@
-<section class="shopify-section section page-width ">
-
-
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-  <!-- Left Column: Loop through blocks for text or button -->
-  <div class=" flex flex-col justify-center items-start space-y-6">
-    {% for block in section.blocks %}
-      <div class="block">
-        {% if block.type == 'title' %}
-          <h3 class="text-5xl font-bold">{{ block.settings.title }}</h3>
-        {% elsif block.type == 'subtitle' %}
-          <p class="text-lg text-gray-600">{{ block.settings.subtitle }}</p>
-          {% elsif block.type == 'richtext' %}
-            <style>
-                ol,ul{
-                    list-style: normal !important;
-                }
-                h1, h2, h3, h4{
-                    font-size: 30px;
-                    font-weight: bold;
-                }
-            </style>
-            <div class="pl-8">{{ block.settings.richtext }}</div>
-        {% elsif block.type == 'button' %}
-          <a href="{{ block.settings.button_url }}" class="inline-block px-6 py-2 bg-gray-600 text-white rounded-lg text-4xl  hover:bg-blue-700">
-            {{ block.settings.button_text }}
-          </a>
-        {% elsif block.type == 'image' %}
-          <img
-            src="{{ block.settings.image | img_url: 'medium' }}"
-            alt="Image"
-            class="w-full h-auto rounded-lg">
-        {% endif %}
-      </div>
-    {% endfor %}
-  </div>
-
-
-
-  <!-- Right Column: Always 1 Image -->
-  <div class="flex justify-center items-center">
-    <img
-      src="{{ section.settings.right_image | img_url: 'medium' }}"
-      alt="Right Image"
-      class="w-full h-auto rounded-lg">
-  </div>
-</div>
+<div style="background-color: {{ section.settings.section_background_color }};">
+<section class="shopify-section section page-width" style="padding-top: {{ section.settings.section_padding_top }}; padding-bottom: {{ section.settings.section_padding_bottom }};">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     
+    <!-- Left Column (Content) -->
+    <div class="flex flex-col justify-center {% if section.settings.image_alignment == 'left' %}md:order-last{% elsif section.settings.image_alignment == 'right' %}md:order-first{% endif %} space-y-6">
+      {% for block in section.blocks %}
+        <div class="block">
+          {% if block.type == 'title' %}
+            <h3 class="font-bold" style="font-size: {{ block.settings.title_font_size }}; color: {{ block.settings.title_color }}; margin-bottom: {{ block.settings.title_margin_bottom }};">
+              {{ block.settings.title }}
+            </h3>
+          {% elsif block.type == 'subtitle' %}
+            <p class="text-lg" style="font-size: {{ block.settings.subtitle_font_size }}; color: {{ block.settings.subtitle_color }}; margin-bottom: {{ block.settings.subtitle_margin_bottom }};">
+              {{ block.settings.subtitle }}
+            </p>
+          {% elsif block.type == 'richtext' %}
+            <div class="tbgtm-rich-text" style="font-size: {{ block.settings.richtext_font_size }}; color: {{ block.settings.richtext_color }}; margin-bottom: {{ block.settings.richtext_margin_bottom }};">
+              <style>
+                .tbgtm-rich-text ol, .tbgtm-rich-text ul {
+                  list-style: disk !important;
+                  margin-left: 15px !important;
+                }
+              </style>
+              {{ block.settings.richtext }}
+            </div>
+          {% elsif block.type == 'button' %}
+            <a href="{{ block.settings.button_url }}" 
+               class="inline-block px-6 py-2 rounded-lg text-4xl"
+               style="background-color: {{ block.settings.button_background_color }}; color: {{ block.settings.button_text_color }}; 
+                      margin-bottom: {{ block.settings.button_margin_bottom }};
+                      hover:bg-{{ block.settings.button_hover_color }};">
+              {{ block.settings.button_text }}
+            </a>
+          {% elsif block.type == 'image' %}
+            <img
+              src="{{ block.settings.image | img_url: 'medium' }}"
+              alt="Image"
+              class="w-full h-auto rounded-lg">
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Right Column (Image) -->
+    <div class="flex justify-center items-center">
+      <img
+        src="{{ section.settings.right_image | img_url: 'medium' }}"
+        alt="Right Image"
+        class="w-full h-auto rounded-lg" style="width: {{ section.settings.image_width }}px; object-fit: cover; border-radius: {{ section.settings.image_border_radius }}px;">
+    </div>
+  </div>
 </section>
+</div>
+
 {% schema %}
   {
-    "name": "2 col iamge text",
+    "name": "Image & text",
     "settings": [
       {
         "type": "image_picker",
         "label": "Right Image",
-        "id": "right_image",
+        "id": "right_image"
+      },
+      {
+        "type": "text",
+        "label": "Section Padding Top",
+        "id": "section_padding_top",
+        "default": "20px"
+      },
+      {
+        "type": "text",
+        "label": "Section Padding Bottom",
+        "id": "section_padding_bottom",
+        "default": "20px"
+      },
+      {
+        "type": "color",
+        "label": "Section Background Color",
+        "id": "section_background_color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "select",
+        "label": "Image Alignment on Desktop",
+        "id": "image_alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "left"
+      },
+      {
+        "type": "range",
+        "label": "Image Width",
+        "id": "image_width",
+        "default": 250,
+        "min": 200,
+        "max": 300
+      },
+      {
+        "type": "range",
+        "label": "Image Border Radius",
+        "id": "image_border_radius",
+        "default": 10,
+        "min": 0,
+        "max": 50
       }
     ],
     "blocks": [
@@ -67,9 +123,28 @@
             "label": "Title Text",
             "id": "title",
             "default": "Your Title Here"
+          },
+          {
+            "type": "text",
+            "label": "Font Size",
+            "id": "title_font_size",
+            "default": "36px"
+          },
+          {
+            "type": "color",
+            "label": "Title Color",
+            "id": "title_color",
+            "default": "#000000"
+          },
+          {
+            "type": "text",
+            "label": "Title Margin Bottom",
+            "id": "title_margin_bottom",
+            "default": "20px"
           }
         ]
-      }, {
+      },
+      {
         "type": "subtitle",
         "name": "Subtitle",
         "settings": [
@@ -78,9 +153,57 @@
             "label": "Subtitle Text",
             "id": "subtitle",
             "default": "Your Subtitle Here"
+          },
+          {
+            "type": "text",
+            "label": "Font Size",
+            "id": "subtitle_font_size",
+            "default": "18px"
+          },
+          {
+            "type": "color",
+            "label": "Subtitle Color",
+            "id": "subtitle_color",
+            "default": "#888888"
+          },
+          {
+            "type": "text",
+            "label": "Subtitle Margin Bottom",
+            "id": "subtitle_margin_bottom",
+            "default": "10px"
           }
         ]
-      }, {
+      },
+      {
+        "type": "richtext",
+        "name": "Rich Text",
+        "settings": [
+          {
+            "type": "richtext",
+            "label": "Rich Text Content",
+            "id": "richtext"
+          },
+          {
+            "type": "text",
+            "label": "Font Size",
+            "id": "richtext_font_size",
+            "default": "16px"
+          },
+          {
+            "type": "color",
+            "label": "Font Color",
+            "id": "richtext_color",
+            "default": "#444444"
+          },
+          {
+            "type": "text",
+            "label": "Margin Bottom",
+            "id": "richtext_margin_bottom",
+            "default": "10px"
+          }
+        ]
+      },
+      {
         "type": "button",
         "name": "Button",
         "settings": [
@@ -89,40 +212,42 @@
             "label": "Button Text",
             "id": "button_text",
             "default": "Click Here"
-          }, {
+          },
+          {
             "type": "url",
             "label": "Button URL",
-            "id": "button_url",
-          }
-        ]
-      }, 
-      {
-        "type": "image",
-        "name": "Image",
-        "settings": [
+            "id": "button_url"
+          },
           {
-            "type": "image_picker",
-            "label": "Image",
-            "id": "image",
-          }
-        ]
-      },
-      {
-        "type": "richtext",
-        "name": "Rich Text editor",
-        "settings": [
+            "type": "color",
+            "label": "Button Background Color",
+            "id": "button_background_color",
+            "default": "#000000"
+          },
           {
-            "type": "richtext",
-            "label": "Rich Text editor",
-            "id": "richtext",
+            "type": "color",
+            "label": "Button Text Color",
+            "id": "button_text_color",
+            "default": "#ffffff"
+          },
+          {
+            "type": "color",
+            "label": "Button Hover Background Color",
+            "id": "button_hover_color",
+            "default": "#555555"
+          },
+          {
+            "type": "text",
+            "label": "Button Margin Bottom",
+            "id": "button_margin_bottom",
+            "default": "10px"
           }
         ]
-      },
-      
+      }
     ],
     "presets": [
       {
-        "name": "2 col text image",
+        "name": "Text & Image",
         "category": "Custom"
       }
     ]

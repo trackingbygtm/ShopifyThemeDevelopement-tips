@@ -1,0 +1,213 @@
+<div class="" style=" padding: {{ section.settings.padding_top }} {{ section.settings.padding_bottom }};  background-color: {{ section.settings.background_color }};">
+
+
+  <section class="shopify-section section page-width ">
+    <div class="grid">
+      <!-- Dynamic Content Blocks -->
+      <div class="">
+        {% for block in section.blocks %}
+          <div class="block mb-6 text-{{ block.settings.text_alignment }}" style="padding-top: {{ block.settings.padding_top }}; padding-bottom: {{ block.settings.padding_bottom }};">
+            {% if block.type == 'title' %}
+              <h3 class="font-bold" style="font-size: {{ block.settings.font_size }}; color: {{ block.settings.text_color }};">
+                {{ block.settings.title }}
+              </h3>
+            {% elsif block.type == 'subtitle' %}
+              <p style="font-size: {{ block.settings.font_size }}; color: {{ block.settings.text_color }};">
+                {{ block.settings.subtitle }}
+              </p>
+            {% elsif block.type == 'richtext' %}
+              <div style="font-size: {{ block.settings.font_size }}; color: {{ block.settings.text_color }};">
+                {{ block.settings.richtext }}
+              </div>
+            {% elsif block.type == 'button' %}
+              <div class="text-{{ block.settings.text_alignment }}">
+                <a
+                  href="{{ block.settings.button_url }}"
+                  class="inline-block rounded-lg"
+                  style="background-color: {{ block.settings.button_bg_color }}; color: {{ block.settings.button_text_color }}; font-size: {{ block.settings.font_size }}; 
+                        padding: {{ block.settings.button_padding_top }} {{ block.settings.button_padding_right }} {{ block.settings.button_padding_bottom }} {{ block.settings.button_padding_left }};">
+                  {{ block.settings.button_text }}
+                </a>
+              </div>
+            {% elsif block.type == 'image' %}
+              <div style="text-align: {{ block.settings.text_alignment }};">
+                <img
+                  src="{{ block.settings.image | img_url: 'medium' }}"
+                  alt="Image"
+                  class="rounded-lg"
+                  style="width: {{ block.settings.image_width }};">
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</div>
+<!-- Schema -->
+{% schema %}
+  {
+    "name": "Enhance-Item",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#ffffff"
+      }, {
+        "type": "text",
+        "id": "padding_top",
+        "label": "Padding Top (e.g., 20px)",
+        "default": "20px"
+      }, {
+        "type": "text",
+        "id": "padding_bottom",
+        "label": "Padding Bottom (e.g., 20px)",
+        "default": "20px"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "title",
+        "name": "Title",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title Text",
+            "default": "Your Title Here"
+          },
+          {
+            "type": "text",
+            "id": "font_size",
+            "label": "Font Size (e.g., 24px)",
+            "default": "24px"
+          },
+          {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+            "default": "#000000"
+          },
+          {
+            "type": "select",
+            "id": "text_alignment",
+            "label": "Text Alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              }, {
+                "value": "center",
+                "label": "Center"
+              }, {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "left"
+          }, {
+            "type": "text",
+            "id": "padding_top",
+            "label": "Padding Top (e.g., 10px)",
+            "default": "10px"
+          }, {
+            "type": "text",
+            "id": "padding_bottom",
+            "label": "Padding Bottom (e.g., 10px)",
+            "default": "10px"
+          }
+        ]
+      }, {
+        "type": "subtitle",
+        "name": "Subtitle",
+        "settings": [
+          {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle Text",
+            "default": "Your Subtitle Here"
+          },
+          {
+            "type": "text",
+            "id": "font_size",
+            "label": "Font Size (e.g., 18px)",
+            "default": "18px"
+          },
+          {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+            "default": "#fff"
+          },
+          {
+            "type": "select",
+            "id": "text_alignment",
+            "label": "Text Alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              }, {
+                "value": "center",
+                "label": "Center"
+              }, {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "left"
+          }, {
+            "type": "text",
+            "id": "padding_top",
+            "label": "Padding Top (e.g., 10px)",
+            "default": "10px"
+          }, {
+            "type": "text",
+            "id": "padding_bottom",
+            "label": "Padding Bottom (e.g., 10px)",
+            "default": "10px"
+          }
+        ]
+      }, {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Upload Image"
+          }, {
+            "type": "text",
+            "id": "image_width",
+            "label": "Image Width (e.g., 100%)",
+            "default": "100%"
+          }, {
+            "type": "select",
+            "id": "text_alignment",
+            "label": "Image Alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              }, {
+                "value": "center",
+                "label": "Center"
+              }, {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "center"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Enhance Item TBGTM",
+        "category": "Custom"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,81 @@
+<section class="shopify-section section page-width ">
+    <div class="py-12 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 md:flex items-center gap-8">
+    <!-- Product Image Section -->
+    <div class="md:w-1/2 text-center md:text-left md:mb-10">
+
+      <img
+        width="300"
+        src="{{ section.settings.product_image | img_url: 'master'  }}"
+        alt="Product Image"
+        class="rounded-lg shadow-lg w-full max-w-md mx-auto md:mx-0">
+
+    </div>
+
+    <!-- Product Content Section -->
+    <div class="md:w-1/2 text-center md:text-left">
+      <p class="text-red-500 font-semibold text-sm uppercase">{{ section.settings.product_tag }}</p>
+      <h2 class="text-3xl font-bold text-gray-800 mt-2">{{ section.settings.product_title }}</h2>
+      <p class="text-gray-600 text-lg mt-4">{{ section.settings.product_description }}</p>
+      <p class="text-xl font-bold text-gray-800 mt-6">{{ section.settings.product_price }}</p>
+      <a href="{{ section.settings.button_link }}" class="mt-6 inline-block bg-blue-600 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:bg-blue-700 transition duration-300">
+        {{ section.settings.button_text }}
+      </a>
+    </div>
+  </div>
+    </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Product Feature Section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "product_image",
+        "label": "Product Image"
+      },
+      {
+        "type": "text",
+        "id": "product_tag",
+        "label": "Product Tag (e.g., Red Diamond)",
+        "default": "Red Diamond"
+      },
+      {
+        "type": "text",
+        "id": "product_title",
+        "label": "Product Title",
+        "default": "Chef No. 1, 8-Inch"
+      },
+      {
+        "type": "textarea",
+        "id": "product_description",
+        "label": "Product Description",
+        "default": "The Chef No. 1 knife is perfect for all kitchen needs. With its precision and craftsmanship, it cuts through everything easily!"
+      }, {
+        "type": "text",
+        "id": "product_price",
+        "label": "Product Price",
+        "default": "$189.99"
+      }, {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button Link"
+      }, {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button Text",
+        "default": "Shop On Amazon"
+      }, 
+],
+    "presets": [
+      {
+        "name": "Product with image Tbgtm",
+        "category": "TBGTM Sections"
+      }
+    ]
+}
+
+
+{% endschema %}

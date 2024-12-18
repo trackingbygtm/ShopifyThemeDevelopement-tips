@@ -1,0 +1,76 @@
+<!-- custom-titles-section.liquid -->
+<div class="bg-blue-500 text-white py-10 px-5" style="background-color: {{ section.settings.background_color }};">
+  <section class="shopify-section section page-width ">
+
+    <div class="">
+      <!-- Main Title -->
+      <h1 class="text-4xl font-bold mb-6">{{ section.settings.main_title }}</h1>
+
+      <!-- Subtitles Loop -->
+      <div class="space-y-4">
+        {% for block in section.blocks %}
+          <div>
+            <h2 class="text-6xl font-semibold" style="color: {{ block.settings.text_color }};">{{ block.settings.subtitle }}</h2>
+            <p class="text-lg" style="color: {{ block.settings.textarea_color }};">{{ block.settings.description }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<!-- Schema for customization -->
+{% schema %}
+  {
+    "name": "Loop Titles ",
+    "settings": [
+      {
+        "type": "text",
+        "id": "main_title",
+        "label": "Main Title",
+        "default": "Main Section Title"
+      }, {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#000"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "subtitle_block",
+        "name": "Subtitle Block",
+        "settings": [
+          {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle",
+            "default": "Subtitle 1"
+          }, {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description",
+            "default": "This is a description for subtitle 1."
+          }, {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+            "default": "#000"
+          }, {
+            "type": "color",
+            "id": "textarea_color",
+            "label": "Description Color",
+            "default": "#000"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "loop Titles TBGTM ",
+        "category": "Custom"
+      }
+    ]
+  }
+{% endschema %}

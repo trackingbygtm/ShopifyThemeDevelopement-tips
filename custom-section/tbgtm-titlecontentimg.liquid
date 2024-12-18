@@ -1,0 +1,124 @@
+<section class="py-10 px-5" style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};">
+  <div class="max-w-7xl mx-auto text-center">
+    <!-- Title -->
+    <h1 class="text-4xl font-bold mb-6" style="text-align: {{ section.settings.title_alignment }};">
+      {{ section.settings.title }}
+    </h1>
+
+    <!-- Content -->
+    <p class="text-lg mb-6" style="text-align: {{ section.settings.content_alignment }};">
+      {{ section.settings.content }}
+    </p>
+
+    <!-- Image -->
+    {% if section.settings.image %}
+      <div class="mb-6 flex" style="justify-content: {% if section.settings.image_alignment == 'left' %}flex-start{% elsif section.settings.image_alignment == 'right' %}flex-end{% else %}center{% endif %};">
+        <img
+          src="{{ section.settings.image | img_url: 'medium' }}"
+          alt="Section Image"
+          style="width: {{ section.settings.image_width }}px; object-fit: cover;">
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Schema for customization -->
+{% schema %}
+  {
+    "name": "Title, Content & Image",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#3490dc"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Your Section Title"
+      },
+      {
+        "type": "select",
+        "id": "title_alignment",
+        "label": "Title Alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center"
+      }, {
+        "type": "textarea",
+        "id": "content",
+        "label": "Content",
+        "default": "This is the content for your section. You can add any text you like here."
+      }, {
+        "type": "select",
+        "id": "content_alignment",
+        "label": "Content Alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center"
+      }, {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }, {
+        "type": "select",
+        "id": "image_alignment",
+        "label": "Image Alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center"
+      }, {
+        "type": "range",
+        "id": "image_width",
+        "label": "Image Width",
+        "default": 400,
+        "min": 400,
+        "max": 500
+      }
+    ],
+    "presets": [
+      {
+        "name": "Title, Content & Image tbgtm",
+        "category": "Custom"
+      }
+    ]
+  }
+{% endschema %}
